@@ -21,7 +21,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/drive", driveRoutes);
 app.use("/api", driveRoutes); // Pour la route share publique
-
+ 
 const startServer = async () => {
   try {
     await connectDB(); // On attend que la connexion soit établie
