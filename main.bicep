@@ -91,6 +91,6 @@ module frontend 'frontend.bicep' = {
     appServicePlanId: appServicePlan.id
     // Inject the Backend URL so the frontend knows where to talk
     // Note: ensure your backend.bicep has 'output defaultHostName string'
-    startupCommand: 'sed -i "s|__API_URL_PLACEHOLDER__|https://${backend.outputs.defaultHostName}|g" /home/site/wwwroot/dist/index.html && pm2 serve /home/site/wwwroot/dist --no-daemon --spa'
+    startupCommand: 'find /home/site/wwwroot -name index.html -exec sed -i "s|__API_URL_PLACEHOLDER__|https://${backend.outputs.defaultHostName}/api|g" {} + && pm2 serve /home/site/wwwroot/dist --no-daemon --spa'
   }
 }
